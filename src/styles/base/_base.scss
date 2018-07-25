@@ -1,0 +1,25 @@
+// Since it's a partial: you use "_" before the name of the file
+
+html {
+    font-size: 62.5%;
+}
+// ^^^^^^^^^^^^^^^^^^ so I can use rems (which 1 rem is 16px), instead of pxs
+
+
+body {
+    font-family: Helvetica;
+    font-size: $mediumSize;
+}
+ 
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default; 
+}
+
+.isActive {
+    font-weight: bold;
+}
