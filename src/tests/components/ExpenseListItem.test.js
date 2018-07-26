@@ -9,3 +9,7 @@ test("should render ExpenseListItem with expenses", () => {
 });
 // .. spreads object, gets it out
 // adding all its properties as props in ExpenseListItem
+
+
+
+// FOR ACCEPTING CHANGES IN TESTS SNAPSHOTS —> PRESS “u”

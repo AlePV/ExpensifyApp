@@ -25,3 +25,6 @@ test("should handle onSubmit", () => {
     expect(history.push).toHaveBeenLastCalledWith("/");
     expect(addExpense).toHaveBeenLastCalledWith(expenses[1]);
 });
+
+
+// FOR ACCEPTING CHANGES IN TESTS SNAPSHOTS —> PRESS “u”
