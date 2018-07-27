@@ -80,3 +80,37 @@ export const editExpense = (id, updates) => ({
     updates
 });
 ////////// EDIT EXPENSE ENDS //////////
+
+
+
+////////// SET EXPENSES STARTS //////////
+// -----> Changes REDUX STORE
+export const setExpenses = (expenses) => ({
+    type: "SET_EXPENSES",
+    expenses
+});
+// Gets array from firebase and sets it
+
+
+// -----> ASYNCHRONOUS ACTION --> fetches data from firebase
+export const startSetExpenses = () => {
+    return (dispatch) => {
+        return database.ref("expenses").once("value").then((snapshot) => {
+            const expenses = [];
+            snapshot.forEach((childSnapshot) => {
+                expenses.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
+                });
+            });
+
+            dispatch(setExpenses(expenses));
+        });
+    };
+};
+
+// 1 --> Fetches all data once
+// 2 --> Parse that data into an array
+// 3 --> Dispatch SET_EXPENSES --> get expenses in the redux store
+
+////////// SET EXPENSES ENDS //////////

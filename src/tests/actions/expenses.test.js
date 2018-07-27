@@ -1,6 +1,6 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import {startAddExpense, addExpense, editExpense, removeExpense} from "../../actions/expenses";
+import {startAddExpense, addExpense, editExpense, removeExpense, setExpenses, startSetExpenses} from "../../actions/expenses";
 import expenses from "../fixtures/expenses";
 import database from "../../firebase/firebase";
 
@@ -9,6 +9,15 @@ const createMockStore = configureMockStore([thunk]);
 // Need to create a mock/fake store to test the new things I changed (in the addExpense file) --> startAddExpense
 // To test that things are added to the database of firebase and that they change the redux store
 
+
+
+beforeEach((done) => {
+    const expensesData = {};
+    expenses.forEach(({id, description, note, amount, createdAt}) => {
+        expensesData[id] = {description, note, amount, createdAt};
+    });
+    database.ref("expenses").set(expensesData).then(() => done());
+});
 
 
 // To go out of a folder --> ../
@@ -131,3 +140,28 @@ test("should add expense with defaults to database and store", (done) => {
         done();
     });
 });
+
+// ---------------------------> SET EXPENSES TEST <---------------------------
+
+test("should setup set expenses action object with data", () => {
+    const action = setExpenses(expenses);
+    expect(action).toEqual({
+        type: "SET_EXPENSES",
+        expenses
+    });
+});
+
+// What passed in should show up (below, inside the func)
+
+test("should fetch the expenses from firebase", (done) => {
+    const store = createMockStore({});
+    store.dispatch(startSetExpenses()).then(() => {
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type:"SET_EXPENSES",
+            expenses
+        });
+        done();
+    });
+});
+// Dispatch on mock store
