@@ -1,11 +1,27 @@
 const path = require("path");
-
+const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 //console.log(path.join(__dirname,"public"));
 //-- __dirname - gives path to this file - /Users/marialepestana/Desktop/ReactCourse/IndecisionApp
 // But it needs to be joined to the path from the public foler, because that's where we want to put our file
 
 // Complete path: /Users/marialepestana/Desktop/ReactCourse/IndecisionApp/public 
+
+
+
+// IN PACKAGE>JSON ADDED SOME THINGS< EXPLANATION:
+// This is automatically set by Heroku (for production)
+// For development --> the abscence of an environment variable will tell us it is development
+
+
+process.env.NODE_ENV = process.env.NODE_ENV || "development";
+// This is an environment variable that stores the environment you are currently in
+
+if (process.env.NODE_ENV === "test") {
+    require("dotenv").config({path: ".env.test"});
+} else if (process.env.NODE_ENV === "development") {
+    require("dotenv").config({path: ".env.development"});
+}
 
 module.exports = (env) => {
 
@@ -44,7 +60,15 @@ module.exports = (env) => {
             }]
         },
         plugins: [
-            CSSExtract
+            CSSExtract,
+            new webpack.DefinePlugin({
+                "process.env.FIREBASE_API_KEY": JSON.stringify(process.env.FIREBASE_API_KEY),
+                "process.env.FIREBASE_AUTH_DOMAIN": JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
+                "process.env.FIREBASE_DATABASE_URL": JSON.stringify(process.env.FIREBASE_DATABASE_URL),
+                "process.env.FIREBASE_PROJECT_ID": JSON.stringify(process.env.FIREBASE_PROJECT_ID),
+                "process.env.FIREBASE_STORAGE_BUCKET": JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
+                "process.env.FIREBASE_MESSAGING_SENDER_ID": JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER_ID)
+            })
         ],
         devtool: isProduction ? "source-map" : "inline-source-map",
         devServer: {
