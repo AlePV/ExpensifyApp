@@ -4,7 +4,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import ExpenseForm from "./ExpenseForm";
-import {editExpense, startRemoveExpense} from "../actions/expenses"; 
+import {startEditExpense, startRemoveExpense} from "../actions/expenses"; 
 
 // ORIGINAL FILE -----> BEFORE CHANGING IT TO TEST IT EASIER
 /*
@@ -92,7 +92,7 @@ export default connect(mapStateToProps)(EditExpensePage);
 
 export class EditExpensePage extends React.Component {
     onSubmit = (expense) => {
-        this.props.editExpense(expense, this.props.expense.id);
+        this.props.startEditExpense(this.props.expense.id, expense);
         this.props.history.push("/");
     };
 
@@ -122,7 +122,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        editExpense: (expense, id) => dispatch(editExpense(expense, id)),
+        startEditExpense: (expense, id) => dispatch(startEditExpense(expense, id)),
         startRemoveExpense: (data) => dispatch(startRemoveExpense(data))
     };
 };

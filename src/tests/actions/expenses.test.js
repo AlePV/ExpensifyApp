@@ -7,7 +7,8 @@ import {
     removeExpense, 
     setExpenses, 
     startSetExpenses, 
-    startRemoveExpense
+    startRemoveExpense,
+    startEditExpense
 } from "../../actions/expenses";
 import expenses from "../fixtures/expenses";
 import database from "../../firebase/firebase";
@@ -62,15 +63,33 @@ test("should remove the expense from firebase", (done) => {
 
 
 // ---------------------------> EDIT EXPENSE TEST <---------------------------
-test ("should setup edit expense action object", () => {
+test("should setup edit expense action object", () => {
     const action = editExpense("123456", {note: "New note"});
     expect(action).toEqual({
         type: "EDIT_EXPENSE",
         id: "123456",
         updates: {note: "New note"}
-    })
-})
+    });
+});
 
+test("should edit expense from firebase", (done) => {
+    const store = createMockStore();
+    const id = expenses[0].id;
+    const updates = { amount: 8000};
+    store.dispatch(startEditExpense(id, updates)).then(() => {
+        const actions = store.getActions();
+        expect(actions[0]).toEqual({
+            type: "EDIT_EXPENSE",
+            id, updates
+        });
+        return database.ref(`expenses/${id}`).once("value");
+    }).then((snapshot) => {
+        const val = snapshot.val();
+        expect(val.amount).toBe(updates.amount);
+        done();
+    }); 
+});
+// Check that the id and updates equal the id and updates from up above
 
 // ---------------------------> ADD EXPENSE TEST <---------------------------
 
