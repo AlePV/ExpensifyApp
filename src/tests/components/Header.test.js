@@ -2,11 +2,11 @@
 import React from "react";
 import {shallow} from "enzyme";
 // import ReactShallowRenderer from "react-test-renderer/shallow";// shallow version does not include user interaction
-import Header from "../../components/Header";
+import {Header} from "../../components/Header";
 
 
 test("should render Header component correctly", () => {
-    const wrapper = shallow(<Header/>);
+    const wrapper = shallow(<Header startLogout={() => {}}/>);
     expect(wrapper).toMatchSnapshot();
 
 
@@ -22,3 +22,13 @@ test("should render Header component correctly", () => {
 // returns renderedOutput of the JSX I put in 
 
 // SNAPSHOTS --> allow to track changes to data overtime
+
+// Can pass anything into startLogout --> so passed in an empty arrow function (that does nothing)
+
+
+test("should call startLogout on button click", () => {
+    const startLogout = jest.fn(); //This is a spy
+    const wrapper = shallow(<Header startLogout={startLogout} />);
+    wrapper.find("button").simulate("click");
+    expect(startLogout).toHaveBeenCalled();
+});

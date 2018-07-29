@@ -28,16 +28,10 @@ exports[`should render Header component correctly 1`] = `
     </NavLink>
      
   </p>
-  <p>
-     
-    <NavLink
-      activeClassName="isActive"
-      ariaCurrent="true"
-      to="/help"
-    >
-      Help
-    </NavLink>
-     
-  </p>
+  <button
+    onClick={[Function]}
+  >
+    Logout
+  </button>
 </header>
 `;

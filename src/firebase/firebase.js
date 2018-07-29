@@ -18,8 +18,14 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-export {firebase, database as default};
 
+
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+// To Authenticate with Google
+
+
+
+export {firebase, googleAuthProvider, database as default};
 
 // ----------------------------------------------------------------------->
 
@@ -294,3 +300,7 @@ A DataSnapshot is passed to the event callbacks you attach with on() or once().
 You can extract the contents of the snapshot as a JavaScript object by calling the val() method. 
 Alternatively, you can traverse into the snapshot by calling child() to return child snapshots 
 (which you could then call val() on). */
+
+// -----------> AUTHENTICATION
+// PROVIDER --> Way to provide authentication
+//         '--> Ex: Google, Twitter, Facebook

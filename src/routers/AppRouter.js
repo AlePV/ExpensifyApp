@@ -1,25 +1,29 @@
 import React from "react";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
-import Header from "../components/Header";
+import {Router, Route, Switch} from "react-router-dom";
 import ExpenseDashboardPage from "../components/ExpenseDashboardPage";
 import HelpPage from "../components/HelpPage";
 import EditExpensePage from "../components/EditExpensePage";
 import AddExpensePage from "../components/AddExpensePage";
 import PageNotFound from "../components/PageNotFound";
+import LoginPage from "../components/LoginPage";
+import createHistory from "history/createBrowserHistory";
+import PrivateRoute from "./PrivateRoute";
+
+export const history = createHistory();
 
 const AppRouter = () => (
-    <BrowserRouter> 
+    <Router history={history} > 
         <div>
-            <Header />
             <Switch>
-                <Route path="/" component={ExpenseDashboardPage} exact={true} />
-                <Route path="/create" component={AddExpensePage} />
-                <Route path="/edit/:id" component={EditExpensePage} />
+                <Route path="/" component={LoginPage} exact={true} />
+                <PrivateRoute path="/dashboard" component={ExpenseDashboardPage}/>
+                <PrivateRoute path="/create" component={AddExpensePage} />
+                <PrivateRoute path="/edit/:id" component={EditExpensePage} />
                 <Route path="/help" component={HelpPage} />
                 <Route component={PageNotFound}/>
             </Switch>
         </div>
-    </BrowserRouter>
+    </Router>
 );
 
 export default AppRouter;
@@ -29,3 +33,11 @@ export default AppRouter;
 // Switch goes in order to check which Route the user is calling, and if it finds it, it stops
 
 //Client side server/routing: does not full refresh the complete page, does not go to the server
+
+// HISTORY (NPM) --> allows me to create some history --> without the need of a component
+// BROWSER ROUTER --> uses the browser router's history by default (has history built in)
+// Change from browserRouter to Router --> because Router allows to provide our own history value
+// '--> advantage --> can export it and use history variable in other files
+// HISTORY={HISTORY}
+//   '--> History value
+//             '--> custom history I created above
