@@ -29,7 +29,7 @@ module.exports = (env) => {
     const CSSExtract = new ExtractTextPlugin("styles.css");
 
     return {
-        entry: "./src/app.js",
+        entry: ["babel-polyfill","./src/app.js"],
         output: {
             path: path.join(__dirname,"public","dist"),
             filename: "bundle.js"
@@ -86,3 +86,8 @@ module.exports = (env) => {
 // Chacks if file loaded ends in js:: /\.js$/
 
 // DEVTOOL : controls how source maps are generated
+
+
+
+// BABEL-POLYFILL --> allows my application to run in a wider range of browsers and browser versions
+// BROWSERSTACK.COM --> allows to simulate my app on other browsers

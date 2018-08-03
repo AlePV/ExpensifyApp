@@ -1,0 +1,23 @@
+.header {
+    background: $darkBlue;
+}
+
+.header__title {
+    color: white;
+    text-decoration: none;
+    h1 {
+        margin: 0
+    }
+}
+
+// TEXT_DECORATION --> clears the decoration of links (the underline)
+
+.header__container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: $smallSize 0;
+}
+// Use FLEXBOX --> to distribute things appropriately how I want
+// Distributes space between 
+// ALIGN-ITEMS --> aligns them vertically

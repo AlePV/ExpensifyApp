@@ -1,0 +1,22 @@
+.page-header {
+    background: $offWhite;
+    margin-bottom: $largeSize;
+    padding: $largeSize 0;
+}
+
+// CONTENT-CONTAINER --> sets the right & left padding
+
+.page-header__title {
+    font-weight: 300;
+    margin: 0;
+    span {
+        font-weight: bold; // bold = 700
+    }
+}
+
+// When I see a span --> do this
+//                  '--> overrides things set before
+
+.page-header__actions {
+    margin-top: $mediumSize
+}

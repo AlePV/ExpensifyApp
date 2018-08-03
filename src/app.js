@@ -10,6 +10,7 @@ import "./styles/styles.scss";
 import "normalize.css/normalize.css";
 import "react-dates/lib/css/_datepicker.css";
 import {firebase} from "./firebase/firebase";
+import LoadingPage from "./components/LoadingPage";
 
 const store = configureStore();
 
@@ -34,7 +35,6 @@ const jsx = (
     </Provider>
 );
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById("app"));
 
 
 let hasRendered = false;
@@ -45,6 +45,10 @@ const renderApp = () => {
     }
 };
 // To render only a single time
+
+
+ReactDOM.render(<LoadingPage />, document.getElementById("app"));
+
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -63,7 +67,11 @@ firebase.auth().onAuthStateChanged((user) => {
         history.push("/");
         // render application --> then redirect to login page
     }
-}); // DEFINES WHAT WE DO WHEN WE LOG IN & OUT
+}); 
+
+
+// DEFINES WHAT WE DO WHEN WE LOG IN & OUT
+// -------------------------------------------------------------------------------------
 // Redirect to dahsboard when logged in & fetch the expenses
 // Runs callback function when the authentication state is changed
 // if there is a user (which means the user is logged in), else (which means the user logged out)

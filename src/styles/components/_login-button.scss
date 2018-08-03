@@ -1,0 +1,25 @@
+.login-button {
+    background: $lightBlue;
+    border: none;
+    color: white;
+    font-size: $fontSizeLarge;
+    font-weight: 300;
+    padding: $smallSize;
+
+    // Added this for buttons that are links
+    display: inline-block;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.login-button--link {
+    background: none;
+}
+// this is a MODIFIER
+//                   '--> uses all the elements from above
+//                   '--> BUT overrides things
+//                   '--> have to be called like this: className="login-button login-button--link"
+
+.login-button--secondary {
+    background: #888888;
+}

@@ -1,0 +1,72 @@
+.list-header {
+    background: $offWhite;
+    border: 1px solid darken($color: $offWhite, $amount: 7);
+    color: $grey;
+    display: flex;
+    justify-content: space-between;
+    padding: $smallSize $mediumSize;
+}
+
+
+.list-body {
+    margin-bottom: $mediumSize;
+    @media (min-width: $desktopBreakpoint) {
+        margin-bottom: $largeSize;
+    }
+}
+
+
+.list-item {
+    border: 1px solid darken($color: $offWhite, $amount: 7);
+    border-top: none;
+    color: $darkGrey;
+    display: flex;
+    flex-direction: column;
+    padding: $smallSize;
+    text-decoration: none;
+    transition: background .3s ease;
+    &:hover {
+        background: $offWhite;
+    }
+
+    @media (min-width: $desktopBreakpoint) {
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: $mediumSize;
+    }
+}
+// & --> take everything from the parent selector --> waits for list tiems to be hovered
+
+.list-item__title {
+    margin: 0;
+    word-break: break-all;
+
+}
+// WORD-BREAK --> to break very long words into different lines
+//           '--> Handles edge case
+
+.list-item__sub-title {
+    color: $grey;
+    font-size: $fontSizeSmall;
+
+}
+
+.list-item__data {
+    margin: $smallSize 0 0 0;
+    @media (min-width: $desktopBreakpoint) {
+        margin: 0;
+        padding-left: $smallSize;
+    }
+}
+
+.list-item--message {
+    align-items: center;
+    justify-content: center;
+    color: $grey;
+    padding: $mediumSize;
+    &:hover{
+        background: none;
+    }
+}
+// For when there are no expenses

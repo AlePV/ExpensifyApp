@@ -1,0 +1,21 @@
+// inputs {}
+//   '--> DO NOT USE THIS because it target all "inputs" --> including third-party styles like DateRangePicker
+
+.text-input {
+    border: 1px solid #cacccd;
+    height: 50px;
+    font-size: $fontSizeLarge;
+    font-weight: 300;
+    padding: $smallSize
+}
+
+.select {
+    @extend .text-input; // This is a SASS TOOL
+
+}
+// This is for the date filter dropdown
+
+.textarea {
+    @extend .text-input;
+    height: 10rem;
+}

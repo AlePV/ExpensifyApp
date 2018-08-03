@@ -1,0 +1,16 @@
+// MAX WIDTH CONTAINER --> to center everything
+// TO GET EVERYTHING CENTERED APPROPRIATELY
+
+.content-container {
+    margin: 0 auto;
+    padding: 0 $mediumSize;
+    max-width: 80rem;
+}
+
+
+// AUTO --> evenly distributes space on left & right
+//     '--> If the browser's width is 100 --> wnat to make sure 10rem are distributed in each side
+
+// PADDING --> 0        mediumSize
+//            ^top/bot    ^left&right
+//        '--> makes sure content doesn't push left or right in any browser

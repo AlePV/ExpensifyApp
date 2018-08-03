@@ -1,0 +1,16 @@
+.loader {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    width: 100vw;
+}
+
+// ALIGN ITEMS --> aligns vertically
+// JUSTIFY CONTENTS --> aligns horizontally
+// height 100vh --> is 100% browser's height
+
+.loader__image {
+    height: 6rem;
+    width: 6rem;
+}

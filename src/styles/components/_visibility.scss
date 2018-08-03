@@ -1,0 +1,14 @@
+.show-for-mobile {
+    @media (min-width: $desktopBreakpoint) {
+        display: none;
+    }
+}
+// Things / characteristics inside will only show up on mobile screens
+
+.show-for-desktop {
+    @media (max-width: $desktopBreakpoint - 0.1rem) {
+        display: none;
+    }
+}
+// Things / characteristics inside will only show up on desktop screens
+// -0.1 --> so they don't take effect at the same time

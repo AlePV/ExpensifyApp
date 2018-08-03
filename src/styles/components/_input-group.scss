@@ -1,0 +1,20 @@
+.input-group {
+    // for mobile --> used inverse logic
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $mediumSize;
+
+    // for desktop --> used inverse logic
+    @media (min-width: $desktopBreakpoint) {
+        flex-direction: row;
+        margin-bottom: $largeSize;
+    }
+}
+
+.input-group__item {
+    margin-bottom: $smallSize;
+    // for desktop
+    @media (min-width: $desktopBreakpoint) {
+        margin: 0 $smallSize 0 0
+    }
+}
